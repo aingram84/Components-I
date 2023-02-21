@@ -87,8 +87,68 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Words go here and here and here',
+    date: 'Jan 32nd, 1926',
+    firstParagraph: `My story begins in nineteen-dickety-two. We had to say -dickety- because the Kaiser had stolen our word -twenty-. I chased that rascal to get it back, but gave up after dickety-six miles. What are you cackling at, fatty? Too much pie, that's your problem! Now, I'd like to digress from my prepared remarks to discuss how I invented the terlet...`,
+
+    secondParagraph: `I used to be with it, but then they changed what "it" was, and now what I’m with isn’t it. And what’s "it" seems weird and scary to me.`,
+
+    thirdParagraph: `I didn’t think it was physically possible, but this both sucks and blows.`
   }
 ];
+
+function articleMaker(artObj) {
+  const domNode1 = document.createElement("div");
+  const domNode2 = document.createElement("h2");
+  const domNode3 = document.createElement("p");
+  const domNode4 = document.createElement("p");
+  const domNode5 = document.createElement("p");
+  const domNode6 = document.createElement("p");
+  const domNode7 = document.createElement("span");
+
+  domNode1.classList.add("article");
+  domNode1.appendChild(domNode2);
+  domNode1.appendChild(domNode3);
+  domNode1.appendChild(domNode4);
+  domNode1.appendChild(domNode5);
+  domNode1.appendChild(domNode6);
+  domNode1.appendChild(domNode7);
+  domNode3.classList.add("date");
+  domNode7.classList.add("expandButton");
+
+  domNode2.textContent = artObj.title;
+  domNode3.textContent = artObj.date;
+  domNode4.textContent = artObj.firstParagraph;
+  domNode5.textContent = artObj.secondParagraph;
+  domNode6.textContent = artObj.thirdParagraph;
+  domNode7.textContent = "+";
+
+  domNode1.addEventListener("click", (event) => {
+    if (!domNode1.classList.contains("article-open")) {
+    domNode1.classList.add("article-open");
+    }
+    else { domNode1.classList.remove("article-open");
+  }
+  });
+
+  return domNode1;
+}
+
+for (let i = 0; i < data.length; i++) {
+  let tempName = articleMaker(data[i]);
+  let articleDiv = document.getElementsByClassName("articles")[0];
+  articleDiv.appendChild(tempName);
+}
+
+
+// select div.articles
+// Use function just made to create component for article
+// append to div articles
+
+
+
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
